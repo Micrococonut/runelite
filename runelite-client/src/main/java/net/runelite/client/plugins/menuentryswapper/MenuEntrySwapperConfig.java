@@ -31,6 +31,7 @@ import net.runelite.client.config.ConfigItem;
 @ConfigGroup("menuentryswapper")
 public interface MenuEntrySwapperConfig extends Config
 {
+
 	@ConfigItem(
 		position = -2,
 		keyName = "shiftClickCustomization",
@@ -218,6 +219,26 @@ public interface MenuEntrySwapperConfig extends Config
 		description = "Swap Check with Reset on box trap"
 	)
 	default boolean swapBoxTrap()
+	{
+		return true;
+	}
+
+	@ConfigItem(
+			keyName = "swapPouches",
+			name = "Pouches",
+			description = "Swap rc pouch fill and empty entries in bank."
+	)
+	default boolean swapPouches()
+	{
+		return true;
+	}
+
+	@ConfigItem(
+			keyName = "swapCW",
+			name = "Lava RC tele swap",
+			description = "Swaps dueling ring teleports to left click when needed for Lava Runecrafting. I.E when in CW it is left click to go to DA and vice versa."
+	)
+	default boolean swapCastleWarsTeleportsForLavaRC()
 	{
 		return true;
 	}

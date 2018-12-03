@@ -347,6 +347,23 @@ public class MenuEntrySwapperPlugin extends Plugin
 			return;
 		}
 
+		boolean isCastleWars = false;
+		boolean isAltar = false;
+		for(int i: client.getMapRegions()) {
+			isCastleWars = isCastleWars || (i == 10059) || (i == 10060) || (i == 10315) || (i == 10316) || (i == 10571) || (i == 10572);
+			isAltar = isAltar || (i == 9519) || (i == 9520) || (i == 9775) || (i == 9776);
+		}
+
+		// Swap remove and castle wars when no bank present
+		if(config.swapCastleWarsTeleportsForLavaRC() && isCastleWars && option.equals("remove") && target.contains("dueling")) {
+			swap("castle wars", option, target, true);
+		}
+
+		if(config.swapCastleWarsTeleportsForLavaRC() && isAltar && option.equals("remove") && target.contains("dueling")) {
+			swap("duel arena", option, target, true);
+		}
+
+
 		if (option.equals("talk-to"))
 		{
 			if (config.swapPickpocket() && target.contains("h.a.m."))
@@ -531,6 +548,12 @@ public class MenuEntrySwapperPlugin extends Plugin
 		else if (config.swapBones() && option.equals("bury"))
 		{
 			swap("use", option, target, true);
+		}
+		else if (config.swapPouches() && target.contains("pouch") && option.contains("deposit-all")) {
+			swap("fill", option, target, true);
+		}
+		else if (config.swapPouches() && target.contains("pouch") && option.contains("fill")) {
+			swap("empty", option, target, true);
 		}
 	}
 
